@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { font-family: theme('fontFamily.inter'); }
+  body {
+    @apply bg-base-900 text-gray-200 antialiased;
+    background-image: theme('backgroundImage.radial-soft');
+    background-attachment: fixed;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-xl border border-white/5 bg-glass backdrop-blur-md shadow-soft;
+  }
+  .btn-icon {
+    @apply inline-flex items-center justify-center rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 transition-colors;
+  }
+}
