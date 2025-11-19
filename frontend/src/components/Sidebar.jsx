@@ -16,9 +16,12 @@ const items = [
   { label: 'Settings', icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M9.594 3.938a1.5 1.5 0 0 1 2.812 0l.284.852a1.5 1.5 0 0 0 1.004.96l.876.263a1.5 1.5 0 0 0 1.37-.3l.686-.548a1.5 1.5 0 0 1 2.12.21l.047.06a1.5 1.5 0 0 1-.21 2.12l-.548.686a1.5 1.5 0 0 0-.3 1.37l.263.876a1.5 1.5 0 0 0 .96 1.004l.852.284a1.5 1.5 0 0 1 0 2.812l-.852.284a1.5 1.5 0 0 0-.96 1.004l-.263.876a1.5 1.5 0 0 0 .3 1.37l.548.686a1.5 1.5 0 0 1-.21 2.12l-.06.047a1.5 1.5 0 0 1-2.12-.21l-.686-.548a1.5 1.5 0 0 0-1.37-.3l-.876.263a1.5 1.5 0 0 0-1.004.96l-.284.852a1.5 1.5 0 0 1-2.812 0l-.284-.852a1.5 1.5 0 0 0-1.004-.96l-.876-.263a1.5 1.5 0 0 0-1.37.3l-.686.548a1.5 1.5 0 0 1-2.12-.21l-.047-.06a1.5 1.5 0 0 1 .21-2.12l.548-.686a1.5 1.5 0 0 0 .3-1.37l-.263-.876a1.5 1.5 0 0 0-.96-1.004l-.852-.284a1.5 1.5 0 0 1 0-2.812l.852-.284a1.5 1.5 0 0 0 .96-1.004l.263-.876a1.5 1.5 0 0 0-.3-1.37l-.548-.686a1.5 1.5 0 0 1 .21-2.12l.06-.047Z"/><path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
     ) },
+  { label: 'Simulation', icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 4.5h7.5v15h-7.5zM12.75 9h7.5v10.5h-7.5z"/></svg>
+    ) },
 ]
 
-export default function Sidebar({ open, onClose }) {
+export default function Sidebar({ open, onClose, activeItem, onSelectItem }) {
   return (
     <div>
       {/* Mobile overlay */}
@@ -37,13 +40,25 @@ export default function Sidebar({ open, onClose }) {
           </div>
 
           <nav className="flex-1 space-y-1 p-3">
-            {items.map((item) => (
-              <button key={item.label} className="group flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-300 hover:text-white transition-colors
-                ring-1 ring-inset ring-white/5 bg-white/0 hover:bg-white/5">
-                <span className="text-gray-400 group-hover:text-white transition-colors">{item.icon}</span>
-                <span>{item.label}</span>
-              </button>
-            ))}
+            {items.map((item) => {
+              const isActive = activeItem === item.label
+              return (
+                <button
+                  key={item.label}
+                  type="button"
+                  onClick={() => onSelectItem && onSelectItem(item.label)}
+                  className={`group flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors ring-1 ring-inset
+                    ${isActive
+                      ? 'text-white bg-white/10 ring-emerald-500/60'
+                      : 'text-gray-300 ring-white/5 bg-white/0 hover:text-white hover:bg-white/5'}`}
+                >
+                  <span className={`transition-colors ${isActive ? 'text-emerald-300' : 'text-gray-400 group-hover:text-white'}`}>
+                    {item.icon}
+                  </span>
+                  <span>{item.label}</span>
+                </button>
+              )
+            })}
           </nav>
 
           <div className="mt-auto p-3">
