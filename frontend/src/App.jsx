@@ -2,15 +2,17 @@ import React, { useEffect, useState } from 'react'
 import MainLayout from './layouts/MainLayout.jsx'
 import StatCard from './components/StatCard.jsx'
 import MapPlaceholder from './components/MapPlaceholder.jsx'
+import SimulationPage from './simulationPage.jsx'
 //import { parkingSpotsMock, parkingSpotsAlternativeMock } from './data/parkingSpots'
 import { calculateParkingStats } from './utils/calculateParkingStats'
-import getData from './supabaseClient'
+import { getData, updateData } from './supabaseClient'
 
 export default function App() {
   const [parkingSpots, setParkingSpots] = useState([])
   const [stats, setStats] = useState({ total: 0, occupied: 0, available: 0 })
   const [loading, setLoading] = useState(true)
   const [scenarioIndex, setScenarioIndex] = useState(0)
+  const [activeView, setActiveView] = useState('Dashboard')
 
   useEffect(() => {
     let isMounted = true
@@ -23,30 +25,24 @@ export default function App() {
       const dataset = await getData()
       if (!isMounted) return
       setParkingSpots(dataset)
-      setStats(calculateParkingStats(dataset))
 
-      console.log(dataset.status)
-
-      let occupiedSpots = 0;
-      let availableSpots = 0;
-
-      for(let i = 0; i < dataset.length; i++) {
-        if(dataset[i].status === 'available') {
-          availableSpots++;
-        }
-        if(dataset[i].status === 'notavailable') {
-          occupiedSpots++;
+      let occupiedSpots = 0
+      for (let i = 0; i < dataset.length; i++) {
+        if (dataset[i].status === 'notavailable') {
+          occupiedSpots++
         }
       }
 
+      const totalSpots = dataset.length
+      const availableSpots = totalSpots - occupiedSpots
+
       setStats({
-        total: dataset.length,
+        total: totalSpots,
         occupied: occupiedSpots,
         available: availableSpots,
       })
 
       setLoading(false)
-      //console.log(dataset)
     }, 400)
 
     return () => {
@@ -59,8 +55,14 @@ export default function App() {
     setScenarioIndex((prev) => (prev === 0 ? 1 : 0))
   }
 
-  return (
-    <MainLayout>
+  const renderContent = () => {
+    if (activeView === 'Simulation') {
+      return <SimulationPage />
+    }
+
+    
+
+    return (
       <section className="space-y-6">
         <div className="flex items-center justify-between gap-4">
           <div>
@@ -121,6 +123,12 @@ export default function App() {
           </div>
         </div>
       </section>
+    )
+  }
+
+  return (
+    <MainLayout activeItem={activeView} onSelectItem={setActiveView}>
+      {renderContent()}
     </MainLayout>
   )
 }
