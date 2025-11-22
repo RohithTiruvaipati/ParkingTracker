@@ -33,3 +33,16 @@ coverage/
 # Vite cache
 .vite/
 **/.vite/
+
+# SSL certificates
+localhost+1.pem
+localhost+1-key.pem
+
+# Generated files
+*.pem
+*.key
+*.crt
+*.der
+*.p12
+
+
