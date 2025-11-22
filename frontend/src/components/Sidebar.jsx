@@ -10,15 +10,16 @@ const items = [
   { label: 'Analytics', icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M3 3v18h18M7.5 15V9.75M12 15V6.75M16.5 15v-4.5"/></svg>
     ) },
-  { label: 'Device Status', icon: (
+  { label: 'Location', icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M9.75 6.75h4.5m-7.5 10.5h10.5M5.25 3.75h13.5a1.5 1.5 0 0 1 1.5 1.5v13.5a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V5.25a1.5 1.5 0 0 1 1.5-1.5Z"/></svg>
+    ) },
+    { label: 'Simulation', icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 4.5h7.5v15h-7.5zM12.75 9h7.5v10.5h-7.5z"/></svg>
     ) },
   { label: 'Settings', icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M9.594 3.938a1.5 1.5 0 0 1 2.812 0l.284.852a1.5 1.5 0 0 0 1.004.96l.876.263a1.5 1.5 0 0 0 1.37-.3l.686-.548a1.5 1.5 0 0 1 2.12.21l.047.06a1.5 1.5 0 0 1-.21 2.12l-.548.686a1.5 1.5 0 0 0-.3 1.37l.263.876a1.5 1.5 0 0 0 .96 1.004l.852.284a1.5 1.5 0 0 1 0 2.812l-.852.284a1.5 1.5 0 0 0-.96 1.004l-.263.876a1.5 1.5 0 0 0 .3 1.37l.548.686a1.5 1.5 0 0 1-.21 2.12l-.06.047a1.5 1.5 0 0 1-2.12-.21l-.686-.548a1.5 1.5 0 0 0-1.37-.3l-.876.263a1.5 1.5 0 0 0-1.004.96l-.284.852a1.5 1.5 0 0 1-2.812 0l-.284-.852a1.5 1.5 0 0 0-1.004-.96l-.876-.263a1.5 1.5 0 0 0-1.37.3l-.686.548a1.5 1.5 0 0 1-2.12-.21l-.047-.06a1.5 1.5 0 0 1 .21-2.12l.548-.686a1.5 1.5 0 0 0 .3-1.37l-.263-.876a1.5 1.5 0 0 0-.96-1.004l-.852-.284a1.5 1.5 0 0 1 0-2.812l.852-.284a1.5 1.5 0 0 0 .96-1.004l.263-.876a1.5 1.5 0 0 0-.3-1.37l-.548-.686a1.5 1.5 0 0 1 .21-2.12l.06-.047Z"/><path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
-    ) },
-  { label: 'Simulation', icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 4.5h7.5v15h-7.5zM12.75 9h7.5v10.5h-7.5z"/></svg>
-    ) },
+    ) }
+  
 ]
 
 export default function Sidebar({ open, onClose, activeItem, onSelectItem }) {

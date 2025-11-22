@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { getData, updateData } from './supabaseClient'
+import { getData, updateData } from '../supabaseClient'
 
 export default function SimulationPage() {
   const initialSpots = Array.from({ length: 12 }, (_, i) => ({

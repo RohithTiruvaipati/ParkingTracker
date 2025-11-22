@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import MainLayout from './layouts/MainLayout.jsx'
 import StatCard from './components/StatCard.jsx'
 import MapPlaceholder from './components/MapPlaceholder.jsx'
-import SimulationPage from './simulationPage.jsx'
+import SimulationPage from './pages/simulationPage.jsx'
+import PhoneTesting from './pages/phoneLocation.jsx'
 //import { parkingSpotsMock, parkingSpotsAlternativeMock } from './data/parkingSpots'
 import { calculateParkingStats } from './utils/calculateParkingStats'
 import { getData, updateData } from './supabaseClient'
-
 export default function App() {
   const [parkingSpots, setParkingSpots] = useState([])
   const [stats, setStats] = useState({ total: 0, occupied: 0, available: 0 })
@@ -58,6 +58,9 @@ export default function App() {
   const renderContent = () => {
     if (activeView === 'Simulation') {
       return <SimulationPage />
+    }
+    if (activeView === 'Location') {
+      return <PhoneTesting />;
     }
 
     
